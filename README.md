@@ -80,7 +80,7 @@ Describe your **plan of attack** for the hackathon:
     Marketplace and editing frame to buy items
 
 - Which **Stellar / Soroban / SDK / protocol** pieces will you integrate or modify?
-
+Yield agregators like DeFindex
 
 - Are you adding new services, refactoring existing ones, or both?
 Both
