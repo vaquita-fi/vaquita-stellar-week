@@ -1,4 +1,5 @@
 [submodule "src/core-ui"]
 	path = src/core-ui
 	url = git@github.com:vaquita-fi/vaquita-core-ui.git
-    ignore = all
+	branch = dev
+	ignore = all
