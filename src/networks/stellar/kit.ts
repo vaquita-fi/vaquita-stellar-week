@@ -1,4 +1,4 @@
-import { allowAllModules, StellarWalletsKit, WalletNetwork, XBULL_ID } from '@creit.tech/stellar-wallets-kit';
+import { allowAllModules, StellarWalletsKit, WalletNetwork, FREIGHTER_ID } from '@creit.tech/stellar-wallets-kit';
 
 let kit: StellarWalletsKit | null = null;
 
@@ -6,7 +6,7 @@ export function getStellarWalletsKit(): StellarWalletsKit {
   if (!kit) {
     kit = new StellarWalletsKit({
       network: getNetworkEnum(),
-      selectedWalletId: XBULL_ID,
+      selectedWalletId: FREIGHTER_ID,
       modules: allowAllModules(),
     });
   }

@@ -2,6 +2,9 @@
 
 import { useNetworks } from '@/core-ui/hooks';
 import PrivyAuthButtons from './PrivyButtons';
+import StellarAuthButtons from './StellarAuthButtons';
+import { useNetworkConfigStore } from '@/core-ui/stores';
+import { useMemo } from 'react';
 
 export const AuthButtons = () => {
   const {
@@ -12,10 +15,33 @@ export const AuthButtons = () => {
     return null;
   }
 
+  useMemo(() => {
+    const { setNetwork } = useNetworkConfigStore.getState();
+    setNetwork({
+      name: 'Stellar Testnet',
+      type: 'Stellar',
+      chainId: 0,
+      tokens: [{
+        isGas: false,
+        isNative: false,
+        isSupported: true,
+        symbol: 'USDC',
+        name: 'USD Coin',
+        decimals: 7,
+        lockPeriod: [604800000],
+        contractAddress: 'CAQCFVLOBK5GIULPNZRGATJJMIZL5BSP7X5YJVMGCPTUEPFM4AVSRCJU',
+        contractAbi: [],
+        vaquitaContractAddress: 'CBINX73LFBNAICQCZRC53VLTAGA3TU2G36QVBKYMMIDSZYP2K7NOT56V',
+        vaquitaContractAbi: [],
+      }]
+    });
+  }, []);
+
   return (
     <div className="absolute top-0 left-0 right-0">
       <div className="flex justify-end gap-1 w-full">
-        <PrivyAuthButtons />
+        {/* <PrivyAuthButtons /> */}
+        <StellarAuthButtons/>
       </div>
     </div>
   );

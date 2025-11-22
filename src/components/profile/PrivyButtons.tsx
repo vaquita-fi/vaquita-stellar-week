@@ -10,6 +10,7 @@ import { isStellarWalletConnected, stellarSession } from '@/networks/stellar';
 export default function PrivyAuthButtons() {
   const { connect, logout } = stellarSession();
   const isConnected = isStellarWalletConnected();
+  console.info('PrivyAuthButtons - ', {isConnected});
 
   const handleConnect = async () => {
     await connect();

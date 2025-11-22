@@ -37,6 +37,7 @@ export function stellarSession() {
 
           console.info('[stellarSession] address from wallet:', addr);
           localStorage.setItem(STORAGE.address, addr);
+          console.log('+++ stellar +++', {storageAddress: STORAGE.address, addr});
           useNetworkConfigStore.getState().setWalletAddress(addr);
         },
       });
