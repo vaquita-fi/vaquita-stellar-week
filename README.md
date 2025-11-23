@@ -8,7 +8,7 @@ Smart contract layer for asset tokenization
 API services for blockchain data retrieval
 
 - Briefly describe the current architecture:
-  - Which components exist today?
+  - Which components exist today ?
     Interactive 3D visualization layer for representing tokenized assets (properties, land parcels)
     User wallet integration system (currently showing a wallet address)
     Financial metrics display (5.89% - potentially representing yield, interest rate, or APY)
