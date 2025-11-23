@@ -117,3 +117,7 @@ Vercel analytics and Posthog.
 -   Leandro Conti, CEO. linktr.ee/contilean
 -   Alejandro Alvarez, CPO.
 -   Fabio Laura, CTO.
+
+## 9. Contract
+
+[Vaquita Pool contract in Soroban testnet](https://stellar.expert/explorer/testnet/contract/CAOGXKXCXKOUIBRGMU3ZK3HDFXYKLJQ7XRYSFSQCEZVSR4LEIJKM3W57)
