@@ -44,7 +44,7 @@ export function DesktopSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden md:flex fixed left-0 top-0 h-screen w-64 border-r-2 border-[#B97204] z-50">
+    <aside className="hidden md:flex fixed left-0 top-0 h-screen w-64 border-r-2 border-[#B97204] z-10">
       <div className="flex flex-col w-full h-full">
         <div className="h-24 flex items-center px-6">
           <Logo />
