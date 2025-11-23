@@ -17,13 +17,7 @@ export default function WalletPage() {
         User: {addressDisplay}
       </div>
       {/* TODO: should be a style associated with the lock period */}
-      <WorldMap
-        period={0}
-        walletAddress={wallet}
-        isLeaderboard={true}
-        worldType={WorldType.FOREST}
-        isAvailable={true}
-      />
+      <WorldMap walletAddress={wallet} isLeaderboard={true} worldType={WorldType.FOREST} isAvailable={true} />
     </div>
   );
 }

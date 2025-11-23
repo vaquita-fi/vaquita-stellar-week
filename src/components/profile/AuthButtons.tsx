@@ -4,18 +4,14 @@ import { useNetworks } from '@/core-ui/hooks';
 import PrivyAuthButtons from './PrivyButtons';
 import StellarAuthButtons from './StellarAuthButtons';
 import { useNetworkConfigStore } from '@/core-ui/stores';
-import { useMemo } from 'react';
+import { useEffect } from 'react';
 
 export const AuthButtons = () => {
   const {
     data: { types },
   } = useNetworks();
 
-  if (types.length === 0) {
-    return null;
-  }
-
-  useMemo(() => {
+  useEffect(() => {
     const { setNetwork } = useNetworkConfigStore.getState();
     setNetwork({
       name: 'Stellar Testnet',
@@ -36,6 +32,10 @@ export const AuthButtons = () => {
       }]
     });
   }, []);
+
+  if (types.length === 0) {
+    return null;
+  }
 
   return (
     <div className="absolute top-0 left-0 right-0">
