@@ -4,6 +4,7 @@ import { isStellarWalletConnected } from './helpers';
 import { getNetworkPassphrase, getRpcUrl } from './kit';
 import { getSorobanClient } from './sorobanClient';
 import { getSorobanTx } from './sorobanTx';
+import { v4 as uuidv4 } from 'uuid';
 
 export const stellarTransactions = async ({
   decimals,
@@ -33,7 +34,7 @@ export const stellarTransactions = async ({
       };
     }
 
-    const depositIdHex = await toHexFromAny(id, 32);
+    const depositIdHex = uuidv4().replaceAll('-', '');
     log('normalized depositIdHex:', { id, depositIdHex });
 
     const period = BigInt(lockPeriod / 1000); // 7 días (ajusta si corresponde)
