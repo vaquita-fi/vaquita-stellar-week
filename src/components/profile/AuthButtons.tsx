@@ -25,9 +25,9 @@ export const AuthButtons = () => {
         name: 'USD Coin',
         decimals: 7,
         lockPeriod: [604800000],
-        contractAddress: 'CAQCFVLOBK5GIULPNZRGATJJMIZL5BSP7X5YJVMGCPTUEPFM4AVSRCJU',
+        contractAddress: 'CDWEFYYHMGEZEFC5TBUDXM3IJJ7K7W5BDGE765UIYQEV4JFWDOLSTOEK',
         contractAbi: [],
-        vaquitaContractAddress: 'CBINX73LFBNAICQCZRC53VLTAGA3TU2G36QVBKYMMIDSZYP2K7NOT56V',
+        vaquitaContractAddress: 'CAOGXKXCXKOUIBRGMU3ZK3HDFXYKLJQ7XRYSFSQCEZVSR4LEIJKM3W57',
         vaquitaContractAbi: [],
       }]
     });
