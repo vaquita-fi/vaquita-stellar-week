@@ -21,7 +21,6 @@ initialize: deploy
 	-- \
 	initialize \
 	--admin $(USER_ADDRESS) \
-	--token $(DEFINDEX_TOKEN) \
 	--blend_token $(BLEND_TOKEN) \
 	--pool_address $(POOL_ADDRESS) \
 	--defindex_vault_address $(DEFINDEX_VAULT_ADDRESS) \
@@ -44,15 +43,15 @@ withdraw:
 	--deposit_id $(DEPOSIT_ID)
 
 add-lock-period:
-	stellar contract invoke --id $(CONTRACT_ID) --source $(SOURCE_ACCOUNT) --network $(NETWORK) \
+	stellar contract invoke --id vaquita_pool --source $(SOURCE_ACCOUNT) --network $(NETWORK) \
 	-- \
 	add_lock_period \
 	--caller $(USER_ADDRESS) \
-	--new_lock_period $(LOCK_PERIOD)
+	--new_lock_period $(NEW_LOCK_PERIOD)
 
 
 add-rewards:
-	stellar contract invoke --id $(CONTRACT_ID) --source $(SOURCE_ACCOUNT) --network $(NETWORK) \
+	stellar contract invoke --id vaquita_pool --source $(SOURCE_ACCOUNT) --network $(NETWORK) \
 	-- \
 	add_rewards \
 	--caller $(USER_ADDRESS) \
