@@ -121,3 +121,12 @@ Vercel analytics and Posthog.
 ## 9. Contract
 
 [Vaquita Pool contract in Soroban testnet](https://stellar.expert/explorer/testnet/contract/CAOGXKXCXKOUIBRGMU3ZK3HDFXYKLJQ7XRYSFSQCEZVSR4LEIJKM3W57)
+
+## 10. Integration
+
+The current integration uses:
+
+[Blend USDC](https://github.com/blend-capital/blend-utils/blob/main/testnet.contracts.json)
+[DeFindex USDC_blend_strategy](https://github.com/paltalabs/defindex/blob/main/public/testnet.contracts.json)
+
+Check for updates when testnet resets
