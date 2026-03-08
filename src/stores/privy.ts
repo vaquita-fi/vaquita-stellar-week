@@ -1,6 +1,5 @@
 'use client';
 
-import type { ConnectedWallet } from '@privy-io/react-auth';
 import { create } from 'zustand';
 
 export type UserInfo = {
@@ -12,7 +11,6 @@ export type UserInfo = {
 type State = {
   ready: boolean;
   authenticated: boolean;
-  wallets: ConnectedWallet[];
   logout: () => Promise<void>;
 
   // Legacy (mantener por compatibilidad temporal)
@@ -41,13 +39,12 @@ export const useAuthStore = create<State & Actions>()((set, get) => ({
   address: '',
   disconnect: noop,
 
-  setPrivyData: ({ ready, authenticated, wallets, logout, userInfo, address }) =>
+  setPrivyData: ({ ready, authenticated, logout, userInfo, address }) =>
     set((state) => {
       const nextAuthenticated = authenticated ?? state.authenticated;
       return {
         ready: ready ?? state.ready,
         authenticated: nextAuthenticated,
-        wallets: wallets ?? state.wallets,
         logout: logout ?? state.logout,
         isConnected: nextAuthenticated,
         userInfo: userInfo ?? state.userInfo,
@@ -60,7 +57,6 @@ export const useAuthStore = create<State & Actions>()((set, get) => ({
     set({
       ready: false,
       authenticated: false,
-      wallets: [],
       logout: noop,
       isConnected: false,
       userInfo: null,

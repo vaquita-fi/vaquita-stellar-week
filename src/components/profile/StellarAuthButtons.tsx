@@ -6,18 +6,11 @@ import { isStellarNetwork, stellarSession } from '@/networks/stellar';
 
 export default function StellarAuthButtons() {
   const { connect, logout } = stellarSession();
-  // const walletAddress = useNetworkConfigStore((store) => store.walletAddress);
-  // console.log({walletAddress});
   const walletAddress = useNetworkConfigStore().walletAddress;
-  console.log({walletAddress})
   const network = useNetworkConfigStore((store) => store.network);
-  console.log({network});
-  // console.log('>>Stellar<<< StellarAuthButtons', {network});
-  
+
   const isStellarNet = network ? isStellarNetwork(network.name) : false;
-  console.log({isStellarNet});
   const isConnected = !!walletAddress && isStellarNet;
-  console.log({isConnected});
 
   const handleConnect = async () => {
     try {

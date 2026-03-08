@@ -5,17 +5,13 @@ import { AblyProvider, NetworksProvider, sendLogToAbly } from '@/core-ui/compone
 import { getNetworks } from '@/core-ui/hooks';
 import { useResize } from '@/core-ui/stores';
 import { useVisibility } from '@/core-ui/stores/visibility';
-import { initPosthog } from '@/posthog';
-import { HeroUIProvider } from '@heroui/react';
-import { ToastProvider } from '@heroui/toast';
-import { PrivyProvider } from '@privy-io/react-auth';
-import { WagmiProvider } from '@privy-io/wagmi';
+import { Toast } from '@heroui/react';
 import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import * as Ably from 'ably';
 import { ChannelProvider, useChannel } from 'ably/react';
 import { ReactNode, useEffect, useState } from 'react';
-import { PrivyProviderSync } from './PrivyProviderSync';
 import { TransactionsProvider } from './TransactionsProvider';
+import { WalletProviderSync } from './WalletProviderSync';
 
 export const queryClient = new QueryClient();
 
@@ -48,7 +44,6 @@ export function Providers({ children }: { children: ReactNode }) {
   useVisibility();
 
   useEffect(() => {
-    initPosthog();
     const listener = () => {
       const vh = window.innerHeight * 0.01;
       document?.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -60,17 +55,16 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <AblyProvider>
-      <HeroUIProvider>
-        <ToastProvider placement="top-center" />
-        <ChannelProvider channelName="deposits-changes">
-          <div className="flex bg-background" style={{ overflow: 'hidden' }} ref={ref}>
-            <DesktopSidebar />
-            <Main>{children}</Main>
-            <MobileNavigation />
-          </div>
-        </ChannelProvider>
-        <TransactionsProvider />
-      </HeroUIProvider>
+      <Toast.Provider />
+      {/*<ToastProvider placement="top-center" />*/}
+      <ChannelProvider channelName="deposits-changes">
+        <div className="flex bg-background" style={{ overflow: 'hidden' }} ref={ref}>
+          <DesktopSidebar />
+          <Main>{children}</Main>
+          <MobileNavigation />
+        </div>
+      </ChannelProvider>
+      <TransactionsProvider />
     </AblyProvider>
   );
 }
@@ -102,13 +96,11 @@ const Main = ({ children }: { children: ReactNode }) => {
       style={{ height: 'var(--100VH)', minHeight: 'var(--100VH)', maxHeight: 'var(--100VH)', overflow: 'hidden' }}
       key={types.join(',')}
     >
-      <PrivyProvider appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!} config={{ loginMethods: ['email'] }}>
-        <QueryClientProvider client={queryClient}>
-          <PrivyProviderSync />
-          <NetworksProvider>{children}</NetworksProvider>
-          <ListenDepositsChanges />
-        </QueryClientProvider>
-      </PrivyProvider>
+      <QueryClientProvider client={queryClient}>
+        <WalletProviderSync />
+        <NetworksProvider>{children}</NetworksProvider>
+        <ListenDepositsChanges />
+      </QueryClientProvider>
     </main>
   );
 };

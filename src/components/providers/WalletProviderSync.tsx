@@ -3,16 +3,16 @@
 import { VAQUITA_KEY_TIMESTAMP, VAQUITA_TIMESTAMP_VALUE } from '@/components/providers/constants';
 import { LoaderScreen } from '@/core-ui/components/molecules/LoaderScreen';
 import { useNetworkConfigStore } from '@/core-ui/stores';
-import { usePrivyStore } from '@/stores';
 import { isStellarNetwork } from '@/networks/stellar';
 import { stellarSession } from '@/networks/stellar/stellar';
+import { usePrivyStore } from '@/stores';
 import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * Componente de sincronización de carteras Stellar
  * Integra Stellar Wallet Kit para gestión de carteras Stellar
  */
-export function PrivyProviderSync() {
+export function WalletProviderSync() {
   const { walletAddress: userWalletAddress, network, reset } = useNetworkConfigStore();
   const setPrivyData = usePrivyStore((s) => s.setPrivyData);
 
@@ -52,11 +52,10 @@ export function PrivyProviderSync() {
     // La dirección de Stellar ya está sincronizada por stellarSession
     // Solo actualizamos el store de compatibilidad
     const stellarAddress = userWalletAddress || '';
-    
+
     setPrivyData({
       ready: stellarReady,
       authenticated: !!stellarAddress,
-      wallets: [],
       logout: async () => {
         if (sessionRef.current) {
           await sessionRef.current.logout();

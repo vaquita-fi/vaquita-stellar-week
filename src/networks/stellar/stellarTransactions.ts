@@ -5,10 +5,7 @@ import { getNetworkPassphrase, getRpcUrl } from './kit';
 import { getSorobanClient } from './sorobanClient';
 import { getSorobanTx } from './sorobanTx';
 
-export const stellarTransactions = async ({
-  decimals,
-  vaquitaContractAddress,
-}: NetworkResponseDTO['tokens'][number]) => {
+export const stellarTransactions = async ({ decimals, vaquitaContractAddress }: NetworkResponseDTO['tokens'][number]) => {
   const rpcUrl = getRpcUrl();
   const networkPassphrase = getNetworkPassphrase();
   const address = getWalletAddress();

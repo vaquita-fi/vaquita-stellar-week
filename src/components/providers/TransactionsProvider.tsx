@@ -35,13 +35,17 @@ export function TransactionsProvider() {
           };
           try {
             log('init', { id, amount });
-            const { success, txHash, transaction, depositIdHex, explorer, error } =
-              (await transactions?.transactionDeposit?.(id, amount, lockPeriod, log)) || {
-                success: false,
-                txHash: '',
-                transaction: null,
-                error: null,
-              };
+            const { success, txHash, transaction, depositIdHex, explorer, error } = (await transactions?.transactionDeposit?.(
+              id,
+              amount,
+              lockPeriod,
+              log,
+            )) || {
+              success: false,
+              txHash: '',
+              transaction: null,
+              error: null,
+            };
             if (success && !!txHash && !!transaction && !!depositIdHex && !error) {
               console.info(`[transactionDeposit] ✅`, { id, amount, txHash, transaction });
               if (explorer) {
@@ -64,7 +68,7 @@ export function TransactionsProvider() {
         const transactionWithdraw: WithdrawFunction = async (
           id: number,
           depositIdHex: string,
-          vaquitaContractAddress: string
+          vaquitaContractAddress: string,
         ) => {
           const log: Parameters<WithdrawFn>[3] = (...props) => {
             console.info('[transactionWithdraw]:', ...props);
@@ -75,7 +79,7 @@ export function TransactionsProvider() {
               id,
               depositIdHex,
               vaquitaContractAddress,
-              log
+              log,
             )) || { success: false, txHash: '', transaction: null, error: null };
             if (success && !!txHash && !!transaction && !error) {
               console.info(`[transactionWithdraw] ✅`, {

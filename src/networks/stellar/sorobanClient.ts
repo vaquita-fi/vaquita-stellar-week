@@ -16,16 +16,19 @@ function normalizeSignedXdr(res: any): string {
  */
 
 const clientRef: { current: ContractClient | null } = { current: null };
+let cachedKey = '';
 
 export async function getSorobanClient(address: string, contractId: string, rpcUrl: string, networkPassphrase: string) {
   const kit = getStellarWalletsKit();
 
   if (!address) {
     clientRef.current = null;
+    cachedKey = '';
     return clientRef;
   }
 
-  if (clientRef.current) {
+  const cacheKey = `${address}:${contractId}:${rpcUrl}:${networkPassphrase}`;
+  if (clientRef.current && cachedKey === cacheKey) {
     return clientRef;
   }
 
@@ -49,6 +52,7 @@ export async function getSorobanClient(address: string, contractId: string, rpcU
   });
 
   clientRef.current = client;
+  cachedKey = cacheKey;
 
   return clientRef;
 }
