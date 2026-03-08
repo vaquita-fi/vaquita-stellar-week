@@ -14,11 +14,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="es">
       <head>
-        <script
-          defer
-          src="https://umami.oscargauss.com/script.js"
-          data-website-id="df3ddd20-0ec1-446f-9b53-47a51458c1b9"
-        ></script>
+        {process?.env?.NODE_ENV !== 'development' && (
+          <script
+            defer
+            src="/umami.js"
+            data-website-id="df3ddd20-0ec1-446f-9b53-47a51458c1b9"
+            data-host-url="https://analytics.oscargauss.com"
+          ></script>
+        )}
       </head>
       <body className="min-h-dvh flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
         <WithHydrated>
